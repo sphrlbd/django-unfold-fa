@@ -1,0 +1,124 @@
+# Persian translations for django-unfold-fa
+#
+# NOTE: This file is a starting point. For full coverage, run
+#   django-admin makemessages -l fa
+# in your project and merge the extracted msgids into this file,
+# then add msgstr translations.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: django-unfold-fa 0.72.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-01 00:00+0000\n"
+"PO-Revision-Date: 2025-12-01 00:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Persian\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/unfold/helpers/header_back_button.html
+msgid "Go back"
+msgstr "بازگشت"
+
+#: templates/unfold/layouts/base.html
+msgid "Django site admin"
+msgstr "مدیریت سایت جنگو"
+
+#: templates/admin/login.html
+msgid "Log in"
+msgstr "ورود"
+
+#: templates/unfold/helpers/userlinks.html
+msgid "Log out"
+msgstr "خروج"
+
+#: templates/admin/base_site.html
+msgid "Home"
+msgstr "خانه"
+
+#: templates/admin/base.html
+msgid "Welcome,"
+msgstr "خوش آمدید،"
+
+#: templates/admin/base.html
+msgid "View site"
+msgstr "مشاهده سایت"
+
+#: templates/admin/base.html
+msgid "Documentation"
+msgstr "مستندات"
+
+#: templates/admin/base.html
+msgid "Change password"
+msgstr "تغییر رمز عبور"
+
+#: templates/admin/base.html
+msgid "Log out"
+msgstr "خروج"
+
+#: templates/unfold/helpers/search.html
+msgid "Search"
+msgstr "جستجو"
+
+#: templates/unfold/helpers/empty_results.html
+msgid "No results found"
+msgstr "هیچ نتیجه‌ای یافت نشد"
+
+#: templates/unfold/helpers/empty_results.html
+msgid "This page yielded into no results. Create a new item or reset your filters."
+msgstr "این صفحه هیچ نتیجه‌ای نداشت. یک مورد جدید ایجاد کنید یا فیلترها را بازنشانی کنید."
+
+#: templates/unfold/helpers/empty_results.html
+msgid "Reset filters"
+msgstr "بازنشانی فیلترها"
+
+#: templates/unfold/helpers/pagination_default.html
+msgid "Previous"
+msgstr "قبلی"
+
+#: templates/unfold/helpers/pagination_default.html
+msgid "Next"
+msgstr "بعدی"
+
+#: templates/unfold/helpers/messages.html
+msgid "Success"
+msgstr "موفقیت"
+
+#: templates/unfold/helpers/messages.html
+msgid "Error"
+msgstr "خطا"
+
+#: templates/unfold/helpers/messages.html
+msgid "Warning"
+msgstr "هشدار"
+
+#: templates/unfold/helpers/messages.html
+msgid "Info"
+msgstr "اطلاعیه"
+
+#: templates/unfold/helpers/theme_switch.html
+msgid "Dark"
+msgstr "تاریک"
+
+#: templates/unfold/helpers/theme_switch.html
+msgid "Light"
+msgstr "روشن"
+
+#: templates/unfold/helpers/theme_switch.html
+msgid "System"
+msgstr "سیستم"
+
+#: templates/admin/change_list.html
+msgid "Filters"
+msgstr "فیلترها"
+
+#: templates/unfold/helpers/search.html
+msgid "Search apps and models..."
+msgstr "جستجو..."
+
+#: templates/unfold/helpers/search.html
+msgid "Filter navigation items"
+msgstr "فیلتر کردن آیتم‌ها"

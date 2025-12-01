@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "django-unfold"
-version = "0.72.0"
-description = "Modern Django admin theme for seamless interface development"
+name = "django-unfold-fa"
+version = "0.72.1"
+description = "Django Unfold admin theme with built-in RTL (right-to-left) support"
 license = "MIT"
 readme = "README.md"
 authors = []
 homepage = "https://unfoldadmin.com"
 repository = "https://github.com/unfoldadmin/django-unfold"
 packages = [{ include = "unfold", from = "src" }]
-keywords = ["django", "admin", "tailwind", "theme"]
+keywords = ["django", "admin", "tailwind", "theme", "rtl"]
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.10",

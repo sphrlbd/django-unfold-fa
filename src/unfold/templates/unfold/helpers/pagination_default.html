@@ -1,4 +1,5 @@
-{% load unfold_list %}
+{% load unfold_list i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% if pagination_required %}
     {% for i in page_range %}
@@ -15,9 +16,14 @@
 
     {{ cl.result_count }}
 
-    {% if cl.result_count == 1 %}
+    {% if LANGUAGE_BIDI %}
+        {# In RTL languages (e.g. fa, ar), always use singular label #}
         {{ cl.opts.verbose_name }}
     {% else %}
-        {{ cl.opts.verbose_name_plural }}
+        {% if cl.result_count == 1 or cl.result_count == 0 %}
+            {{ cl.opts.verbose_name }}
+        {% else %}
+            {{ cl.opts.verbose_name_plural }}
+        {% endif %}
     {% endif %}
 </div>

@@ -855,17 +855,36 @@ class UnfoldBooleanWidget(CheckboxInput):
 
 
 class UnfoldBooleanSwitchWidget(CheckboxInput):
+    template_name = "unfold/widgets/switch.html"
+
     def __init__(
         self, attrs: dict[str, Any] | None = None, check_test: Callable = None
     ) -> None:
+        if attrs is None:
+            attrs = {}
+
+        # Ensure the native checkbox is visually hidden even if Tailwind
+        # utility classes aren't available in the consuming project.
+        existing_style = attrs.get("style", "") if attrs else ""
+        hide_style = "position: absolute; opacity: 0; width: 0; height: 0;"
+        combined_style = (
+            (existing_style + " " + hide_style).strip() if existing_style else hide_style
+        )
+
+        input_classes = " ".join(
+            [attrs.get("class", "") if attrs else "", "sr-only", "peer"]
+        ).strip()
+
+        # Add a data attribute used by the template's CSS fallback.
+        attrs = {**(attrs or {}), "data-unfold-switch": "true"}
+
         super().__init__(
             attrs={
                 **(attrs or {}),
-                "class": " ".join(
-                    [*SWITCH_CLASSES, attrs.get("class", "") if attrs else ""]
-                ),
+                "class": input_classes,
+                "style": combined_style,
             },
-            check_test=None,
+            check_test=check_test,
         )
 
 

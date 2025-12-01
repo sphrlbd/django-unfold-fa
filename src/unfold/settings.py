@@ -15,7 +15,6 @@ CONFIG_DEFAULTS = {
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": True,
     "SHOW_LANGUAGES": False,
-    "LANGUAGE_FLAGS": {},
     "SHOW_BACK_BUTTON": False,
     "COLORS": {
         "base": {

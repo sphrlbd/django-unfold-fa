@@ -1,0 +1,305 @@
+/*
+ * RTL support overrides for Django Unfold.
+ *
+ * These styles are only applied when the root <html> element has dir="rtl".
+ * They mirror the most commonly used LTR utilities and component styles.
+ */
+
+/* -------------------------------------------------------------------------- */
+/* Base direction                                                             */
+/* -------------------------------------------------------------------------- */
+
+html[dir="rtl"] body {
+  direction: rtl;
+}
+
+/* Keep icon font left‑to‑right so Material Symbols render correctly */
+html[dir="rtl"] .material-symbols-outlined {
+  direction: ltr;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Text alignment & floats                                                    */
+/* -------------------------------------------------------------------------- */
+
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+html[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+html[dir="rtl"] .float-right {
+  float: left;
+}
+
+html[dir="rtl"] .float-left {
+  float: right;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Auto margins used for alignment                                            */
+/* -------------------------------------------------------------------------- */
+
+html[dir="rtl"] .ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+html[dir="rtl"] .mr-auto {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+html[dir="rtl"] .lg\:ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+html[dir="rtl"] .lg\:mr-auto {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Common fixed margins / paddings used in templates                          */
+/* (We only override a subset that is actually used in Unfold templates.)     */
+/* -------------------------------------------------------------------------- */
+
+/* Positive margins */
+html[dir="rtl"] .ml-1 { margin-left: 0; margin-right: calc(var(--spacing) * 1); }
+html[dir="rtl"] .ml-2 { margin-left: 0; margin-right: calc(var(--spacing) * 2); }
+html[dir="rtl"] .ml-3 { margin-left: 0; margin-right: calc(var(--spacing) * 3); }
+html[dir="rtl"] .ml-4 { margin-left: 0; margin-right: calc(var(--spacing) * 4); }
+html[dir="rtl"] .ml-6 { margin-left: 0; margin-right: calc(var(--spacing) * 6); }
+
+html[dir="rtl"] .mr-1 { margin-right: 0; margin-left: calc(var(--spacing) * 1); }
+html[dir="rtl"] .mr-2 { margin-right: 0; margin-left: calc(var(--spacing) * 2); }
+html[dir="rtl"] .mr-3 { margin-right: 0; margin-left: calc(var(--spacing) * 3); }
+html[dir="rtl"] .mr-4 { margin-right: 0; margin-left: calc(var(--spacing) * 4); }
+html[dir="rtl"] .mr-6 { margin-right: 0; margin-left: calc(var(--spacing) * 6); }
+
+/* Negative margins */
+html[dir="rtl"] .-ml-1 { margin-left: 0; margin-right: calc(var(--spacing) * -1); }
+html[dir="rtl"] .-ml-2 { margin-left: 0; margin-right: calc(var(--spacing) * -2); }
+html[dir="rtl"] .-ml-3 { margin-left: 0; margin-right: calc(var(--spacing) * -3); }
+
+html[dir="rtl"] .-mr-1 { margin-right: 0; margin-left: calc(var(--spacing) * -1); }
+html[dir="rtl"] .-mr-2 { margin-right: 0; margin-left: calc(var(--spacing) * -2); }
+html[dir="rtl"] .-mr-3 { margin-right: 0; margin-left: calc(var(--spacing) * -3); }
+
+/* Paddings that are visually asymmetric (commonly used in templates) */
+html[dir="rtl"] .pl-3 { padding-left: 0; padding-right: calc(var(--spacing) * 3); }
+html[dir="rtl"] .pl-4 { padding-left: 0; padding-right: calc(var(--spacing) * 4); }
+html[dir="rtl"] .pl-6 { padding-left: 0; padding-right: calc(var(--spacing) * 6); }
+
+html[dir="rtl"] .pr-3 { padding-right: 0; padding-left: calc(var(--spacing) * 3); }
+html[dir="rtl"] .pr-4 { padding-right: 0; padding-left: calc(var(--spacing) * 4); }
+html[dir="rtl"] .pr-6 { padding-right: 0; padding-left: calc(var(--spacing) * 6); }
+
+/* Utility with before:mr-auto / after:-ml-px that is used in table layouts */
+html[dir="rtl"] .before\:mr-auto::before {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+html[dir="rtl"] .after\:-ml-px::after {
+  margin-left: 0;
+  margin-right: -1px;
+}
+
+/* Checkbox toggle knob position (class: checked:after:left-4) */
+html[dir="rtl"] .checked\:after\:left-4:checked::after {
+  left: auto;
+  right: calc(var(--spacing) * 4);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Generic left/right positioning helpers                                     */
+/* -------------------------------------------------------------------------- */
+
+html[dir="rtl"] .left-0 { left: auto; right: 0; }
+html[dir="rtl"] .right-0 { right: auto; left: 0; }
+
+html[dir="rtl"] .left-3 { left: auto; right: calc(var(--spacing) * 3); }
+html[dir="rtl"] .right-3 { right: auto; left: calc(var(--spacing) * 3); }
+
+html[dir="rtl"] .left-12 { left: auto; right: calc(var(--spacing) * 12); }
+html[dir="rtl"] .right-11 { right: auto; left: calc(var(--spacing) * 11); }
+
+/* -------------------------------------------------------------------------- */
+/* Form widgets: select dropdown caret                                        */
+/* -------------------------------------------------------------------------- */
+
+/* The base stylesheet positions the caret on the right side; mirror it. */
+html[dir="rtl"] select:not([class*="bg-none"]):not([multiple]) {
+  background-position: left 0.7rem center;
+}
+
+/* Changelist actions select (white caret) */
+html[dir="rtl"] #changelist-actions select:not([class*="bg-none"]):not([multiple]) {
+  background-position: left 0.7rem center;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Datetime widgets                                                           */
+/* -------------------------------------------------------------------------- */
+
+/* Shortcuts and icons live on the right in LTR; move them to the left. */
+html[dir="rtl"] .datetimeshortcuts {
+  right: auto;
+  left: 1px;
+}
+
+html[dir="rtl"] .timezonewarning {
+  right: auto;
+  left: 2.75rem; /* mirror of right-11 */
+}
+
+html[dir="rtl"] .timezonewarning:hover {
+  left: auto;
+  right: 1px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Selector widget                                                             */
+/* -------------------------------------------------------------------------- */
+
+/* Swap add/remove arrows so they make sense visually in RTL. */
+html[dir="rtl"] .selector-add::after {
+  content: "arrow_back";
+}
+
+html[dir="rtl"] .selector-remove::after {
+  content: "arrow_forward";
+}
+
+/* -------------------------------------------------------------------------- */
+/* Calendar / timepicker                                                      */
+/* -------------------------------------------------------------------------- */
+
+/* Center overlay is already centered; we just need to mirror navigation. */
+html[dir="rtl"] .calendarnav-previous {
+  left: auto;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+html[dir="rtl"] .calendarnav-next {
+  right: auto;
+  left: 0;
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+html[dir="rtl"] .calendarnav-previous::after {
+  content: "navigate_next";
+}
+
+html[dir="rtl"] .calendarnav-next::after {
+  content: "navigate_before";
+}
+
+/* -------------------------------------------------------------------------- */
+/* Autocomplete (select2)                                                     */
+/* -------------------------------------------------------------------------- */
+
+/* Arrow icon alignment inside single select. */
+html[dir="rtl"] .select2-container.select2-container--admin-autocomplete .select2-selection--single .select2-selection__arrow {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+html[dir="rtl"] .select2-container.select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
+  padding-right: 0.75rem;
+  padding-left: 2rem;
+}
+
+/* Multiple selection chip remove icons */
+html[dir="rtl"] .select2-container--admin-autocomplete .select2-selection--multiple li.select2-selection__choice .select2-selection__choice__remove::after {
+  /* keep icon LTR inside chip */
+  direction: ltr;
+}
+
+/* -------------------------------------------------------------------------- */
+/* DjangoQL search box                                                        */
+/* -------------------------------------------------------------------------- */
+
+/* The completion popup is shifted left with a negative margin; mirror it. */
+html[dir="rtl"] div.djangoql-completion {
+  margin-left: 0;
+  margin-right: -39px;
+}
+
+html[dir="rtl"] div.djangoql-completion li i {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Generic flex utilities                                                      */
+/* -------------------------------------------------------------------------- */
+
+/* Some toolbars rely on lg:ml-auto to push actions to the right. */
+html[dir="rtl"] .lg\:ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Tabs & nav items that use before:mr-auto (label + counter). */
+html[dir="rtl"] .before\:mr-auto::before {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Header-specific fixes                                                       */
+/* -------------------------------------------------------------------------- */
+
+/* Keep userlinks group aligned to the far inline end (right side) in RTL. */
+html[dir="rtl"] #header-inner .ml-auto {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* Theme switch & account/profile dropdown menus: ensure RTL direction
+   and right-aligned text inside the popover menus.
+   Use a broad selector so it works in both light (bg-white) and dark
+   (dark:bg-base-800) themes. */
+html[dir="rtl"] .relative > nav.absolute {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Dropdowns that are positioned with -right-2 in LTR should mirror to
+   -left-2 in RTL so they open inwards from the icon, not off-screen. */
+html[dir="rtl"] .relative > nav.absolute.\-right-2 {
+  right: auto;
+  left: calc(var(--spacing) * -2);
+}
+
+/* Inside those dropdowns, arrange content RTL: icon on the right,
+   text next to it, full item right-aligned. */
+html[dir="rtl"] .relative > nav.absolute a.flex {
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Icon sits at the far right, with space before the label. */
+html[dir="rtl"] .relative > nav.absolute span.material-symbols-outlined.mr-2 {
+  margin-right: 0;
+  margin-left: calc(var(--spacing) * 2);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Safety: ensure overflow/scrollbars behave as expected                        */
+/* -------------------------------------------------------------------------- */
+
+/* Where we used text-left in tables/lists, let RTL inherit right alignment. */
+html[dir="rtl"] table th.text-left,
+html[dir="rtl"] table td.text-left {
+  text-align: right;
+}

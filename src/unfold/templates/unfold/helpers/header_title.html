@@ -1,3 +1,5 @@
+{% load i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 {% spaceless %}
     {% for part in parts %}
         <{% if part.link %}a href="{{ part.link }}"{% else %}span{% endif %} class="align-middle inline-block leading-5 tracking-tight">
@@ -5,7 +7,9 @@
         </{% if part.link %}a{% else %}span{% endif %} >
 
         {% if not forloop.last %}
-            <span class="material-symbols-outlined inline-block align-middle leading-5 mx-2 text-base-400 dark:text-base-500">chevron_right</span>
+            <span class="material-symbols-outlined inline-block align-middle leading-5 mx-2 text-base-400 dark:text-base-500">
+                {% if LANGUAGE_BIDI %}chevron_left{% else %}chevron_right{% endif %}
+            </span>
         {% endif %}
     {% endfor %}
 {% endspaceless %}

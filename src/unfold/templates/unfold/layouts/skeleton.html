@@ -31,6 +31,8 @@
 
         <link href="{% static 'unfold/css/styles.css' %}" rel="stylesheet">
         <link href="{% static 'unfold/css/simplebar/simplebar.css' %}" rel="stylesheet">
+        {# RTL overrides: loaded for all, but only active when dir="rtl" #}
+        <link href="{% static 'unfold/css/rtl.css' %}" rel="stylesheet">
 
         <script src="{% static 'unfold/js/alpine/alpine.anchor.js' %}" defer></script>
         <script src="{% static 'unfold/js/alpine/alpine.persist.js' %}" defer></script>

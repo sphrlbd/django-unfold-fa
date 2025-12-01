@@ -11,6 +11,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost"]
 
+# Default to Arabic so the example project renders the admin in RTL mode.
+LANGUAGE_CODE = "ar"
+
+LANGUAGES = [
+    ("ar", "Arabic"),
+    ("en", "English"),
+]
+
 AUTH_USER_MODEL = "example.User"
 
 USE_TZ = False
