@@ -1,0 +1,28 @@
+<div class="grow relative max-w-2xl" x-data="{ open: false }" @click.outside="open = false">
+    <select name="{{ widget.name }}" class="hidden" {% include "django/forms/widgets/attrs.html" %}>{% for group_name, group_choices, group_index in widget.optgroups %}{% if group_name %}
+        <optgroup label="{{ group_name }}">{% endif %}{% for option in group_choices %}
+            {% include option.template_name with widget=option %}{% endfor %}{% if group_name %}
+                </optgroup>{% endif %}{% endfor %}
+    </select>
+
+    <button type="button" @click="open = !open" class="w-full border border-base-200 bg-white rounded-default shadow-xs text-sm text-font-default-light font-medium px-3 py-2 appearance-none flex items-center justify-between dark:bg-base-900 dark:border-base-700 dark:text-font-default-dark focus:outline-2 focus:-outline-offset-2 focus:outline-primary-600 dark:focus:outline-primary-600 group-[.errors]:border-red-600 dark:group-[.errors]:border-red-500">
+        <span class="truncate text-left" x-text="document.querySelector('[name={{ widget.name|escapejs }}] option:checked')?.text || '{{ widget.value|default:'Select...'|escapejs }}'"></span>
+        <span class="material-symbols-outlined pointer-events-none text-base-400 dark:text-base-500 shrink-0 ltr:ml-2 rtl:mr-2" :class="{ 'rotate-180': open }">expand_more</span>
+    </button>
+
+    <nav x-show="open" x-transition class="absolute bg-white border border-base-200 flex flex-col leading-none py-1 left-0 right-0 rounded-default shadow-lg top-11 z-50 dark:bg-base-800 dark:border-base-700 w-full" @click.stop>
+        {% for group_name, group_choices, group_index in widget.optgroups %}
+            {% if group_name %}
+                <div class="px-3 py-1.5 text-xs font-semibold text-base-500 dark:text-base-400">{{ group_name }}</div>
+            {% endif %}
+            {% for option in group_choices %}
+                <button type="button" 
+                    @click="document.querySelector('[name={{ widget.name|escapejs }}]').value = '{{ option.value|escapejs }}'; open = false; $el.closest('div').querySelector('button:first-of-type').textContent = '{{ option.label|escapejs }}'; document.querySelector('[name={{ widget.name|escapejs }}]').dispatchEvent(new Event('change', { bubbles: true }));"
+                    :class="document.querySelector('[name={{ widget.name|escapejs }}]')?.value == '{{ option.value|escapejs }}' ? 'text-primary-600 bg-primary-50 dark:text-primary-400 dark:bg-base-700' : ''"
+                    class="cursor-pointer w-full text-left flex flex-row mx-0 px-3 py-1.5 rounded-default hover:bg-base-100 hover:text-base-700 dark:hover:bg-base-700 dark:hover:text-base-200 transition-colors">
+                    <span class="leading-none self-center">{{ option.label }}</span>
+                </button>
+            {% endfor %}
+        {% endfor %}
+    </nav>
+</div>

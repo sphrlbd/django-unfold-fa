@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-unfold-fa"
-version = "0.72.4"
+version = "0.72.5"
 description = "Django Unfold admin theme with built-in RTL (right-to-left) support"
 license = "MIT"
 readme = "README.md"

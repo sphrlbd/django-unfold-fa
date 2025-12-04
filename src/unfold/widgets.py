@@ -687,7 +687,7 @@ class UnfoldAdminBigIntegerFieldWidget(AdminBigIntegerFieldWidget):
 
 
 class UnfoldAdminNullBooleanSelectWidget(NullBooleanSelect):
-    template_name = "unfold/widgets/select.html"
+    template_name = "unfold/widgets/select_custom.html"
 
     def __init__(self, attrs=None):
         if attrs is None:
@@ -700,7 +700,7 @@ class UnfoldAdminNullBooleanSelectWidget(NullBooleanSelect):
 
 
 class UnfoldAdminSelectWidget(Select):
-    template_name = "unfold/widgets/select.html"
+    template_name = "unfold/widgets/select_custom.html"
 
     def __init__(self, attrs=None, choices=()):
         if attrs is None:
