@@ -685,3 +685,5 @@ const renderCharts = () => {
     changeDarkModeSettings();
   });
 };
+
+

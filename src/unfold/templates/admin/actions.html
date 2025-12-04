@@ -2,7 +2,7 @@
 
 <div id="changelist-actions" class="actions flex flex-col gap-3 text-white sm:flex-row sm:items-center lg:items-center {% if not cl.model_admin.list_fullwidth %}mx-auto{% endif %}" x-bind:style="'width: ' + changeListWidth + 'px'">
     {% block actions %}
-        <div class="group primary flex flex-row gap-2 lg:flex-row" x-data="{action: '', selectAcross: 0}">
+        <div class="group primary flex flex-row gap-2 lg:flex-row" x-data="{action: '', actionLabel: '', selectAcross: 0, dropdownOpen: false}">
             {% block actions-form %}
                 {% for field in action_form %}
                     {% if field.label %}
@@ -10,7 +10,26 @@
                             {{ field.label }}
                     {% endif %}
 
-                    {{ field }}
+                    {% if field.field.widget.input_type == "select" %}
+                        <div style="position: relative; display: flex; flex-direction: column-reverse; align-items: flex-start;">
+                            <button type="button" @click="dropdownOpen = !dropdownOpen" class="bg-white/20 border border-white/30 flex items-center gap-2 px-3 py-2 rounded-default text-white text-sm hover:bg-white/30 transition-colors font-medium" style="padding-right: 2.5rem; min-width: 180px;">
+                                <span x-text="actionLabel ? actionLabel : '{% trans 'انتخاب عملیات' %}'" class="text-sm">{% trans "انتخاب عملیات" %}</span>
+                                <span style="position: absolute; right: 0.5rem; pointer-events: none; font-size: 12px;">▲</span>
+                            </button>
+                            <div x-show="dropdownOpen" @click.outside="dropdownOpen = false" style="position: absolute; bottom: 100%; background: #1f2937; border: 1px solid #374151; border-radius: 6px; min-width: 200px; z-index: 60; max-height: 250px; overflow-y: auto; box-shadow: 0 10px 15px rgba(0,0,0,0.3); margin-bottom: 0.5rem;">
+                                {% for option_value, option_label in field.field.choices %}
+                                    {% if option_value %}
+                                        <button type="button" @click="action = '{{ option_value }}'; actionLabel = '{{ option_label }}'; dropdownOpen = false" class="block w-full text-left px-4 py-2.5 hover:bg-primary-600 text-white text-sm transition-colors first:rounded-t-default last:rounded-b-default" style="border-bottom: 1px solid #374151;">
+                                            {{ option_label }}
+                                        </button>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="action" x-bind:value="action">
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
 
                     {% if field.label %}
                         </label>
@@ -19,8 +38,8 @@
             {% endblock %}
 
             {% block actions-submit %}
-                <button type="submit" x-show="action" class="bg-primary-900 cursor-pointer flex font-medium items-center justify-center px-3 py-2 rounded-default text-sm text-white whitespace-nowrap" title="{% translate "Run the selected action" %}" name="index" value="{{ action_index|default:0 }}">
-                    {% trans "Run" %}
+                <button type="submit" x-show="action" class="bg-primary-900 cursor-pointer flex font-medium items-center justify-center px-3 py-2 rounded-default text-sm text-white whitespace-nowrap" title="{% translate "اجرای عمل انتخاب شده" %}" name="index" value="{{ action_index|default:0 }}">
+                    {% trans "اجرا" %}
                 </button>
             {% endblock %}
         </div>
